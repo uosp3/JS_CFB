@@ -1,0 +1,48 @@
+<script>
+let nome='Edson Santos'
+let nome2=new String('Gomes')
+let nome3='Edson Santos'
+let nome4='Edson Santo'
+
+console.log(typeof(nome2))
+console.log(nome2)
+
+console.log(nome.charAt(2)) // retorna a letra que está na posição 2
+console.log(nome.charCodeAt(2)) //retorna o código ASCII da letra da posição 2
+console.log(nome.concat(nome2)) //concatena
+console.log(nome.indexOf('s')) //retorna a posicão do caractere, se não existir retorna -1
+console.log(nome.lastIndexOf('s')) //posição do último caractere procurado.
+
+//comparação de "objetos" string
+console.log(nome.localeCompare(nome3)) //retorno 'zero' significa que são iguais
+console.log(nome.localeCompare(nome4)) //retorno 'um' ou 'menos um' significa que são diferentes
+
+
+console.log(nome.replace('E', 'U')) //substitui um caractere ou um pedaço da string, apenas o primeiro encontrado
+console.log(nome.search('antos')) //retorna a posição do primeiro caractere encontrado, inicio em zero
+
+nome='Bruno Pinho Campos'
+let sobrenome=nome.slice(6,11)
+console.log(sobrenome) //retorna um trecho da string, inicio e fim.
+
+let arr_nome=nome.split('o') //localiza o caratire o 'picota' a string em partes, forma um array
+console.log(arr_nome) 
+
+let parte1=nome.substring(6,11) //semelhante ao slice. Mas não inclui o último caractere?
+console.log(parte1)
+
+let parte2=nome.substr(6,5) //função em desuso, pega o caractere inicial e quantos mais estiverem difinidos nos parâmetros
+console.log(parte2)
+
+nome=nome.toUpperCase() //converte para maiúsculo, tb pode ser com toLocaleUpperCase
+console.log(nome)
+
+nome=nome.toLowerCase() //converte para minúsculo, tb pode ser com toLocaleLowerCase
+console.log(nome)
+
+console.log(nome2) //compare essa linha com a próxima, essa é um objeto.
+console.log(nome2.valueOf()) //valor primitivo da string, vr real
+
+let num=10
+console.log(typeof(num.toString())) //converte valor em string
+</script>

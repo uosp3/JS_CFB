@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entendendo sobre objetos em JS</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    class Carro {
+        constructor(pnome, ptipo){
+            this.nome=pnome
+            if(ptipo==1){
+                this.tipo='Esportivo'
+                this.velmax=300
+            } else if(ptipo==2){
+                this.tipo='Utilitário'
+                this.velmax=100
+            } else if(ptipo==3){
+                this.tipo='Passeio'
+                this.velmax=160
+            } else {
+                this.tipo='Militar'
+                this.velmax=180
+            }
+        }
+        info() {
+            console.log(`Nome.: ${this.nome}`)  //usando template string, com crase
+            console.log('Tipo: ' + this.tipo) //usando método 'normal'
+            console.log('Vel.Max: ' + this.velmax)
+        }
+        //metodos GET ========== mostra os parâmetros ja definidos
+        getNome(){
+            return this.nome
+        }
+        getTipo(){
+            return this.tipo
+        }
+        getVelMax(){
+            return this.velmax
+        }
+        getInfo() { //parâmetros em um array
+            return [this.nome, this.tipo, this.velmax]
+        }
+    
+
+        //metodos SET======== redefine os parâmetros
+        setNome(nome) {
+            this.nome=nome
+        }
+        setTipo(tipo) {
+            this.tipo=tipo
+        }
+        setVelMax(velmax) {
+            this.velmax=velmax
+        }
+    }
+
+    let c1=new Carro('Fusca', 3)   //cria o objeto e passa os parâmetros 
+
+    //imprime, no console, as características, baseadas nos parâmetros passados(predefinidos):
+    c1.info()
+    
+    c1.setNome('Saveiro') //redefine o parâmetro ja existente.
+    c1.setTipo('Utilitário')//redefine o parâmetro ja existente.
+    c1.setVelMax(140)//redefine o parâmetro ja existente.
+
+    //imprime, no console, as características, baseadas nos parâmetros REDEFINIDOS
+    c1.info()
+
+    console.log(c1.getNome()) //imprime apenas o parâmetro ja existente
+    console.log(c1.getInfo()[0]) //imprime um parâmetro do array, conforme o índice
+</script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>aula121_webstorage_localstorage_sessionstorage</title>
+    <style>
+      * {
+        border: none;
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      input {
+        border: 3px solid #aaa;
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 5px 30px;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #888;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" name="f_texto" id="f_texto" />
+    <br />
+    <p id="p_texto"></p>
+    <button id="btn_texto">WebStorage</button>
+  </body>
+</html>
+<script>
+  const f_texto = document.querySelector("#f_texto")
+  const p_texto = document.querySelector("#p_texto")
+  const btn_texto = document.querySelector("#btn_texto")
+
+  btn_texto.addEventListener("click", (evt) => {})
+
+  let num = 10
+
+  //obs.: os dados serão gravados no navegador e para visualizar entre com F12 e vá em 'aplicativo'
+
+  //gravar o valor. Informar uma chave e um valor
+  window.localStorage.setItem("numero", num) //window é facultativo
+  window.localStorage.setItem("numero2", 61)
+  window.localStorage.setItem("numero3", 23)
+
+  //ler o valor. Informar uma chave
+  let vrLido = localStorage.getItem("numero")
+  //alert(vrLido)
+
+  //limpar os dados
+  //localStorage.clear()
+
+  //ver a chave
+  let chave = localStorage.key(0)
+  //alert(chave)
+  alert(localStorage.getItem(localStorage.key(2)))
+
+  let tamanho = localStorage.length
+
+
+  // o que foi visto vale também para sessionStorage.
+</script>

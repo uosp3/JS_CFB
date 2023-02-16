@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 54 - MAP</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        .caixa{
+            border: 5px solid rgb(179, 92, 92);
+            width: 400px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Não confuda MAP (coleção) com MAP (método)</h1>
+    <div id="caixa" class="caixa"></div>    
+</body>
+</html>
+
+<script>
+    const caixa=document.querySelector('#caixa')
+
+    let musicas=new Set(['musica1', 'musica boa', 'musica10'])//cria a coleção de itens, NÃO aceita entradas duplicadas.
+
+    musicas.add('musica legal') //adição de novo item à coleção
+    musicas.add('musica1')//NÃO aceita entradas duplicadas.   
+    musicas.add('musica10')//NÃO aceita entradas duplicadas.
+
+    musicas.delete('musica1') //deleta um elemento da colecão
+
+    console.log(musicas)
+
+    musicas.forEach((el)=>{ //lista a coleção.
+        caixa.innerHTML+=el +'<br>'
+    })
+
+    musicas.clear() //limpa a coleção
+</script>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .numero {
+            font-size: larger;
+        }
+        .ok {
+            color: #00f;
+        }
+        .erro {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div id="numero" class="numero"></div>
+    <button id="btn_promessa">Promessa</button>
+</body>
+</html>
+<script>
+    //o código faz a execução até o final e depois mostra um resultado de alguma rotina que ficou para tras devido ao tempo que a mesma demora para ser executada.
+    const numero=document.getElementById('numero')
+    const btn_promessa=document.getElementById('btn_promessa')
+
+    btn_promessa.addEventListener('click', (evt)=>{
+        numero.innerHTML='Processando...'
+        promessa()
+            .then((retorno)=>{//caso o resultado da promessa tenha sido true
+                numero.innerHTML=retorno//a variável 'retorno' recebe 'resolve'
+                numero.classList.remove('erro')//so para formatar CSS
+                numero.classList.add('ok')//so para formatar CSS
+            })
+            .catch((retorno)=>{//caso o resultado da promessa tenha sido falso
+                numero.innerHTML=retorno//a variável 'retorno' recebe 'reject'
+                numero.classList.add('erro')//so para formatar CSS
+                numero.classList.remove('ok')//so para formatar CSS
+            })
+    })
+   
+
+    const promessa=()=>{
+        let p=new Promise((resolve,reject)=>{//cria uma promessa de que o resultado da execução dessa parte será informada posteriormente, o resultado será 'resolve' ou 'rejeita.'
+        let resultado=true//pode ser true ou false, apenas para testar o comando.
+        let tempo=3000
+        
+        setTimeout(()=>{ //verifica a condição e espera 3 segs para dar o retorno.
+            if(resultado){
+                resolve('Deu tudo certo')
+            } else {
+                reject('Deu tudo errado')
+            }            
+        },tempo)
+    })
+    return p
+}   
+numero.innerHTML='Esperando...'
+</script>

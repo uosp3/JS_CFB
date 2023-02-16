@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        button {
+            width: 150px;
+            height: 40px;
+            background-color: #025;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 10px; 
+            margin: 5px;           
+        }
+        .curso {
+            display: flex;
+            justify-content: center;
+            width: 200px;
+            border: 4px solid #888;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .selecionado {
+            background-color: #800 !important;
+            color: #fcc !important;
+            border-color: #f00 !important;            
+        }
+        .c1 {
+            background-color: #ccc;
+            color: #444;
+        }
+        .c2 {
+            background-color: #444;
+            color: #ccc;
+        }
+        .caixa {
+            border: 4px solid #000;
+            background-color: #eee;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;            
+            height: 500px;
+            width: 300px;
+        }
+        .btn_lixeira {
+            width: 25px;
+            cursor: pointer;
+        }
+        .caixaFuncionalidades {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;            
+        }
+        .comandos {
+            width: 30%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #caixaNovoCuros {
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="caixaNovoFuncionalidades" class="caixa">
+            <div id="caixaNovoCurso" class="caixaFuncionalidades">
+                <label>Nome do curso</label>
+                <input type="text" name="nomeCurso" id="nomeCurso">
+                <button id="btnAdicionarNovoCursoAntes">Adicionar Antes</button>
+                <button id="btnAdicionarNovoCursoDepois">Adicionar Depois</button>
+            </div>
+            <div id="caixaRemoverCurso" class="caixaFuncionalidades">
+                <button id="btnRemoverCurso">Remover Selecionado</button>
+            </div>
+            <div id="caixaCursoSelecionado" class="caixaFuncionalidades">
+                <button id="btnCursoSelecionado">Curso Selecionado</button>
+            </div>
+        </div>
+        <div id="caixaCursos" class="caixa">
+            <!--Cursos serão adicionados aqui-->
+        </div>
+    </main>    
+</body>
+</html>
+
+
+
+<script>
+    //o código abaixo deve ficar em um arquivo INCLUDE, ficou aqui para facilitar o treino.
+    const caixaCursos=document.querySelector('#caixaCursos')
+    //const btn_c=[...document.querySelectorAll('.curso')]    
+    const cursos=['HTML', 'CSS', 'JavaScript', 'PHP', 'React', 'MySQL', 'ReactNative']
+    const btnCursoSelecionado=document.getElementById('btnCursoSelecionado')
+    const btnRemoverCurso=document.getElementById('btnRemoverCurso')
+    const btnAdicionarNovoCursoAntes=document.getElementById('btnAdicionarNovoCursoAntes')
+    const btnAdicionarNovoCursoDepois=document.getElementById('btnAdicionarNovoCursoDepois')
+    const nomeCurso=document.getElementById('nomeCurso')
+
+    let indice=0
+
+    const tirarSelecao=()=>{
+        const cursosSelecionados=[...document.querySelectorAll('.selecionado')]
+        cursosSelecionados.map((el)=>{            
+            el.classList.remove('selecionado')
+        })
+    }
+
+    //CRIA NOVO CURSO
+    const criarNovoCurso=(curso)=>{
+        const novoElemento=document.createElement('div')//cria a div
+        novoElemento.setAttribute('id', 'c'+indice) //atribui id à div
+        novoElemento.setAttribute('class', 'curso c1')  //atribui class à div
+        novoElemento.innerHTML=curso  //conteúdo da div(itenm do array 'cursos')
+        novoElemento.addEventListener('click', (evt)=>{
+            tirarSelecao()
+            evt.target.classList.toggle('selecionado')//toggle adiciona ou remove uma classe ao elemento
+        })
+  
+        indice++
+        return novoElemento
+    }
+
+    cursos.map((el, chave)=>{ //Faz um loop pelo array 'cursos'
+        const novoElemento=criarNovoCurso(el)
+        caixaCursos.appendChild(novoElemento)//coloca o 'novoElemento' na div 'caixaCursos'
+        
+    })
+
+    //PEGAR O CURSO QUE FOI SELECIONADO =======================================================
+    const cursoSelecionado=()=>{
+        const cursosSelecionados=[...document.querySelectorAll('.selecionado')]        
+        return cursosSelecionados[0] //retorna o curso selecionado.
+    }
+
+    //BOTÃO CURSO SELECIONADO ====================================================================
+    btnCursoSelecionado.addEventListener('click', (evt)=>{ //pega o 'click' no botão selecionado e executa a função anônima()        
+        try{            
+            alert ('Curso selecionado: ' + cursoSelecionado().innerHTML)            
+        } catch (ex) {
+            alert('Selecione um curso')
+        }
+    })
+
+    //BOTÃO REMOVER SELECIONADO ==================================================================
+    btnRemoverCurso.addEventListener('click', (evt)=>{
+        const cs=cursoSelecionado()
+       if(cs!=undefined){                       
+            cs.remove()
+        } else { 
+            alert ('Selecione um curso')
+        }
+    })
+
+    //BOTÃO ADICIONAR CURSO ANTES ==================================================================    
+    btnAdicionarNovoCursoAntes.addEventListener('click', (evt)=>{
+        try{
+            if(nomeCurso.value!="") {                
+                const novoCurso=criarNovoCurso(nomeCurso.value)   
+                caixaCursos.insertBefore(novoCurso, cursoSelecionado()) //insere o curso criado antes do curso selecionado  
+            } else {
+                alert('Digite o nome do curso')
+            }
+        } catch {
+            alert('Selecione um curso')
+        }
+
+    })
+
+        //BOTÃO ADICIONAR CURSO DEPOIS ==================================================================
+    btnAdicionarNovoCursoDepois.addEventListener('click', (evt)=>{
+        try{
+            if(nomeCurso.value!="") {
+                const novoCurso=criarNovoCurso(nomeCurso.value)   
+                caixaCursos.insertBefore(novoCurso, cursoSelecionado().nextSibling)//insere o curso criado antes do 'proximo irmão' do curso selecionado (javascript não tem um método para inserir DEPOIS, por isto tem que inserir antes do próximo selecionado)
+            } else {
+                alert('Digite o nome do curso')        
+            }
+        } catch {
+            alert('Selecione um curso')
+        }
+    })
+</script>

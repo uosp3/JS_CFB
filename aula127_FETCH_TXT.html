@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch ler txt</title>
+  </head>
+  <body>
+    <p id="texto"></p>
+  </body>
+</html>
+<script>
+  const texto = document.querySelector("#texto")
+
+  const endpoint = "texto.txt"
+
+  fetch(endpoint)
+    .then((res) => res.text())
+    .then((res) => {
+      res = JSON.parse(res)
+      console.log(res)
+      console.log(res.canal)
+      console.log(res.curso)
+    })
+</script>

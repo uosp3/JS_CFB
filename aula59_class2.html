@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entendendo sobre objetos em JS</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        .campoForm {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        .campoForm input {
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        .campoForm button {
+            background-color: #888;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .res {
+            display: flex;
+            width: 100%;
+            border: 3px solid black;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .pessoa  {
+           border: 3px #444 solid; 
+           padding: 5px;
+           border-radius: 5px;
+           display: flex;
+           width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="campoForm">
+        <label for="">Nome</label>
+        <input type="text" name="f_nome" id="f_nome">
+    </div>
+    <div class="campoForm">
+        <label for="">Idade</label>
+        <input type="text" name="f_idade" id="f_idade">
+    </div>
+    <div class="campoForm">
+        <button id="btn_add">Adicionar</button>
+    </div>
+    <div class="res"></div>
+</body>
+</html>
+
+<script>
+    class Pessoa {
+        constructor(pnome, pidade){
+            this.nome=pnome
+            this.idade=pidade
+            
+        }
+        //metodos GET ========== mostra os parâmetros ja definidos
+        getNome(){
+            return this.nome
+        }
+        getIdade(){
+            return this.idade
+        }
+        
+        
+        //metodos SET======== redefine os parâmetros
+        setNome(nome) {
+            this.nome=nome
+        }
+        setIdade(idade) {
+            this.idade=idade
+        }
+        
+        info() {
+            console.log(`Nome.: ${this.nome}`)  //usando template string, com crase
+            console.log('Idade: ' + this.idade) //usando método 'normal'
+            console.log('-----------------------')
+        }
+    }
+    let pessoas=[]
+    
+    const btn_add=document.querySelector('#btn_add')
+    const res=document.querySelector('.res')
+
+    const addPessoa=()=>{ //funcão chamada na última linha
+        res.innerHTML=''
+        pessoas.map((p)=>{ //percorre o conteúdo de 'p'
+            const div=document.createElement('div') //cria a div
+            div.setAttribute('class', 'pessoa') //atribui a class
+            div.innerHTML=`Nome: ${p.getNome()} <br>Idade: ${p.getIdade()}` //insere os dados na div
+            res.appendChild(div) //insere a div 'filha' criada
+    })
+    }
+
+    btn_add.addEventListener('click', (evt)=>{ //cria o evento click no botão
+        const nome=document.querySelector('#f_nome')
+        const idade=document.querySelector('#f_idade')
+        const p=new Pessoa(nome.value,idade.value) //cria a 'pessoa' com o 'construtor'        
+        pessoas.push(p) //insere a 'pessoa' no array 'pessoas'
+        nome.value='' //limpa o campo
+        idade.value='' //limpa o campo
+        nome.focus()
+        addPessoa() //chama a função addPessoa
+    })
+    
+</script>

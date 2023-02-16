@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p_texto"></p>
+    <button id="btn_texto">Fetch</button>
+  </body>
+</html>
+<script>
+  /*Foi criada uma api em replit.com assim:
+
+    var http = require('http');
+http.createServer(function(req, res){
+  res.setHeader('Access-Control-allow-Origin', '*');
+  res.writeHead(200, { 'Content-Type':'application~/json'});
+  
+  let numero = {
+    valor: Math.round(Math.random()*10)
+  }
+  
+  res.end(JSON.stringify(numero));
+}).listen(8080);*/
+
+  const endpoint = "https://cfbcursos.uosp3.repl.co" //caminho da api
+  fetch(endpoint)
+    .then((res) => res.json()) //recebe o retorno(resposta) do fatch e converte para json
+    .then((dados) => {
+      console.log(dados)
+    })
+</script>

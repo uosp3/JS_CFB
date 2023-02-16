@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        button{
+            background-color: #eee;
+            padding: 10px 50px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        button:hover{
+            outline: 3px solid #f00;
+        }
+    </style>
+</head>
+<body>
+    <h1>CFB Cursos</h1>
+    <h4>youtube.com/cfbcursos</h4>
+    <h4>www.cfbcursos.com.br</h4>
+    <button id="btn_alert">Alert</button>
+    <button id="btn_confirm">Confirm</button>
+    <button id="btn_prompt">Prompt</button>    
+</body>
+</html>
+<script>
+    const btn_alert=document.getElementById('btn_alert')
+    const btn_confirm=document.getElementById('btn_confirm')
+    const btn_prompt=document.getElementById('btn_prompt')
+
+    btn_alert.addEventListener('click', (evt)=>{
+        alert('Ola, como voce está?')
+    })
+
+    btn_confirm.addEventListener('click', (evt)=>{
+        const ret=confirm('Você está aprendendo muito?')
+        if(ret){
+            console.log('Botão OK pressionado')
+        }else {
+            console.log('Botão CANCELAR pressionado')            
+        }
+    })
+
+    btn_prompt.addEventListener('click', (evt)=>{
+        const nome=prompt('Digite seu nome', 'Digite seu nome aqui')
+        if(nome==null){
+            console.log('Botão CANCELAR pressionado')
+        } else{
+            console.log('Nome digitado ' + nome)
+        }
+    })
+</script>

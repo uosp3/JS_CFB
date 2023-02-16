@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARRAY</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        .caixa{
+            border: 5px solid rgb(179, 92, 92);
+            width: 400px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="caixa" class="caixa"></div>    
+</body>
+</html>
+
+<script>
+    const caixa=document.querySelector('#caixa')
+    
+    let cores=['azul', 'verde', 'vermelho'] //na linha abaixo foi adicionado um array a outro array, neste caso o segundo array fica inteiro na posição '3' e caso queira fazer referencia a um valor do segundo array(por exemplo:verde) usa-se o os índices [3][1], assim: console.log(cursos[3][1]) ===== MATRIZES
+    let cursos=['HTML', 'CSS', 'JavaScript', cores]
+
+    cursos[0]="C++" //atribui um novo valor ao array na posição 0 (substitui)
+    cursos.push('React')//adiciona um novo valor no FINAL do array
+    cursos.pop()//retira o ÚLTIMO elemento do array
+    cursos.unshift('Python')//adiciona um novo valor no INICIO do array
+    cursos.shift()//retira o valor do INICIO do array
+
+    cursos.map((el)=>{
+        let p=document.createElement('p')
+        p.innerHTML=el
+        caixa.appendChild(p)
+
+    })
+</script>

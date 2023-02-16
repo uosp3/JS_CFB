@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        border: none;
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      #timer {
+        background-color: #333;
+        color: #0f0;
+        display: flex;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 40px;
+        padding: 10px 20px;
+        justify-content: center;
+        width: 250px;
+        border-radius: 10px;
+        border: 5px solid #888;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="timer">00:00:00</p>
+  </body>
+</html>
+<script>
+  const timer = document.querySelector("#timer")
+
+  const tmpini = Date.now()
+
+  const contador = () => {
+    const tmpatual = Date.now()
+    let cont = tmpatual - tmpini
+    let seg = (tmpatual - tmpini) / 1000
+    timer.innerHTML = converter(seg)
+  }
+
+  const converter = (seg) => {
+    let hora = Math.floor(seg / 3600)
+    let resto = seg % 3600
+    let minuto = Math.floor(resto/60)
+    let segundo = Math.floor(resto%60)
+    let form =
+      (hora < 10 ? "0" + hora : hora) +
+      ":" +
+      (minuto < 10 ? "0" + minuto : minuto) +
+      ":" +
+      (segundo < 10 ? "0" + segundo : segundo)
+    return form
+  }
+
+  setInterval(contador, 1000)
+</script>

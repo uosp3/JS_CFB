@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 54 - MAP</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        .caixa{
+            border: 5px solid rgb(179, 92, 92);
+            width: 400px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Não confunda MAP (coleção) com MAP (método)</h1>
+    <div id="caixa" class="caixa"></div>    
+</body>
+</html>
+
+<script>
+    const caixa=document.querySelector('#caixa')
+
+    let mapa=new Map() //cria uma coleção
+    mapa.set('curso', 'JavaScript') //chave, conteúdo
+    mapa.set(10, 'CFB Cursos')
+    mapa.set(1,100)
+    mapa.set('canal', 1000)
+
+    mapa.delete(1) //deleta o valor cuja chave seja '1', no caso '100'
+
+    console.log(mapa)
+
+    caixa.innerHTML=mapa.get('curso') //obtem o valor da chave 'curso' use o 'get'
+
+    //saber se a chave existe na coleção use o 'has'
+    let pes = 'curso'
+    let res=''
+    let tam=mapa.size //pegar o tamanho da coleção, use 'size'
+    if(mapa.has(pes)){
+        res="<br>A chave existe na coleção com o valor: " + mapa.get(pes)        
+    } else {
+        res='<br>A chave não existe na coleção.'
+    }
+    res+='<br> O tamanho da coleção é ' + tam
+    caixa.innerHTML+=res
+
+    mapa.forEach((el)=>{ //faz um loop nos elementos do map(mapa)
+        console.log(el)
+    })
+
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array de funções</title>
+    <style>
+        div {
+            display: block;
+            padding: 5px;
+        }
+        button {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>    
+    <div>Valor 1 <br><input type="text" name="" id="valor1" value="0" required></div>
+    <div>Valor 2 <br><input type="text" name="" id="valor2" value="0" required></div>
+    <div>Resultado </br><input type="text" name="" id="resultado" value="0" disabled></div>
+    
+    <button id="mais">+</button>
+    <button id="menos">-</button>
+    <button id="multiplicar">x</button>
+    <button id="dividir">/</button>
+    
+</body>
+</html>
+<script>
+    const mais=document.querySelector('#mais')
+    const menos=document.querySelector('#menos')
+    const multiplicar=document.querySelector('#multiplicar')
+    const dividir=document.querySelector('#dividir')
+    const valor1=document.querySelector('#valor1')
+    const valor2=document.querySelector('#valor2')
+    
+
+     
+    const op=[//aqui foi aberto um ARRAY, vide a seguir as funções que o compõe   
+        ()=>{
+            const val=[valor1.value, valor2.value]
+            resultado.value=Number(val[0])+Number(val[1])
+        },
+
+        ()=>{
+            const val=[valor1.value, valor2.value]
+            resultado.value=Number(val[0])-Number(val[1])
+        },
+
+        ()=>{
+            const val=[valor1.value, valor2.value]
+            resultado.value=Number(val[0])*Number(val[1])
+        },
+
+        ()=>{
+            const val=[valor1.value, valor2.value]
+            resultado.value=Number(val[0])/Number(val[1])
+        }
+    ] 
+
+    mais.addEventListener('click', op[0])
+    menos.addEventListener('click', op[1])
+    multiplicar.addEventListener('click', op[2])
+    dividir.addEventListener('click', op[3])
+
+</script>

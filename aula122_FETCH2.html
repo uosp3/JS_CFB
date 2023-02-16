@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="p_temp">0</p>
+    <p id="p_nivel">0</p>
+    <p id="p_press">0</p>
+    <button id="btn_texto">Fetch</button>
+  </body>
+</html>
+<script>
+  /*Foi criada uma api em replit.com assim:
+
+  var http = require('http');
+  http.createServer(function(req, res){
+  res.setHeader('Access-Control-allow-Origin', '*');
+  res.writeHead(200, { 'Content-Type':'application~/json'});
+  
+  let numero = {
+    temperatura: Math.round(Math.random()*10),
+    nivel: Math.round(Math.random()*10),
+    pressao: Math.round(Math.random()*10)
+  }
+  
+  res.end(JSON.stringify(numero));
+}).listen(8080);*/
+
+  const p_temp = document.getElementById("p_temp")
+  const p_nivel = document.getElementById("p_nivel")
+  const p_press = document.getElementById("p_press")
+
+  const obterDados=()=>{
+    const endpoint = "https://cfbcursos2.uosp3.repl.co" //caminho da api
+    fetch(endpoint) //fetch(endpoint, {method: 'get'}), nesse caso é o padrão e não é necessário.
+    .then((res) => res.json()) //recebe o retorno(resposta) do fatch e converte para json
+    .then((dados) => {
+      //console.log(dados)
+      p_temp.innerHTML = "Temperatura: " + dados.temperatura
+      p_nivel.innerHTML = "Nível: " + dados.nivel
+      p_press.innerHTML = "Pressão: " + dados.pressao
+    })
+  }
+
+  let intervalo=setInterval(obterDados,2000)
+</script>

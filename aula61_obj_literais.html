@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entendendo sobre objetos em JS</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        .campoForm {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        .campoForm input {
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        .campoForm button {
+            background-color: #888;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .res {
+            display: flex;
+            width: 100%;
+            border: 3px solid black;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .pessoa  {
+           border: 3px #444 solid; 
+           padding: 5px;
+           border-radius: 5px;
+           display: flex;
+           width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="campoForm">
+        <label for="">Nome</label>
+        <input type="text" name="f_nome" id="f_nome">
+    </div>
+    <div class="campoForm">
+        <label for="">Idade</label>
+        <input type="text" name="f_idade" id="f_idade">
+    </div>
+    <div class="campoForm">
+        <button id="btn_add">Adicionar</button>
+    </div>
+    <div class="res"></div>
+</body>
+</html>
+
+<script>
+    //objetos literais, neste caso não adianta fazer várias 'const' apontando para o mesmo objeto que todas assumirão o mesmo valor.A atribuição de valores ao método é feita com dois pontos
+    const Pessoa={
+        nome:document.querySelector('#f_nome'),
+        idade:document.querySelector('#f_idade'),
+
+        getNome:function(){
+            return this.nome.value
+        },
+
+        getIdade:function(){
+            return this.idade.value
+        },
+
+        setNome:function(nome){
+            this.nome=nome.value
+        },
+
+        setIdade:function(idade){
+            this.idade=idade.value
+        }       
+    }   
+    
+    const btn_add=document.querySelector('#btn_add')
+    const res=document.querySelector('.res')
+
+    const addPessoa=()=>{ //funcão chamada na última linha        
+            const div=document.createElement('div') //cria a div
+            div.setAttribute('class', 'pessoa') //atribui a class           
+            div.innerHTML=`Nome: ${Pessoa.getNome()} <br>Idade: ${Pessoa.getIdade()}`
+            res.appendChild(div) //insere a div 'filha' criada
+    }    
+
+    btn_add.addEventListener('click', ()=>{ //cria o evento click no botão
+        const f_nome=document.querySelector('#f_nome')
+        const f_idade=document.querySelector('#f_idade')            
+        addPessoa() //chama a função addPessoa
+        f_nome.value='' //limpa o campo
+        f_idade.value='' //limpa o campo
+        f_nome.focus()
+    })
+</script>

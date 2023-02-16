@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herança em POO</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        
+        .carros {
+            display: flex;
+            width: 100%;
+            border: 3px solid black;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .carro {
+            border: 3px #008 solid;
+            background-color: #8cf;
+            padding: 5px;
+            border-radius: 5px;
+            display: flex;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="carros">
+        <!-- <div class="carro">Golf</div> -->
+    </div>
+</body>
+</html>
+
+<script>
+    class Carro { //classe 'pai' ou base
+        constructor(nome, portas){
+            this.nome=nome
+            this.portas=portas
+            this.ligado=false
+            this.vel=0
+            this.cor=undefined
+        }
+
+        ligar=function(){
+            this.ligado=true
+        }
+
+        desligar=function(){
+            this.ligado=false
+        }
+
+        setCor=function(cor){
+            this.cor=cor
+        }
+    }
+
+    class Militar extends Carro{ //classe 'filho'
+        constructor(nome, portas, blindagem, municao){
+            super(nome, portas)
+            this.blindagem=blindagem
+            this.municao=municao
+            this.setCor('Verde')
+        }
+
+        atirar=function(){
+            if(this.municao>0){
+                this.municao--
+            }
+        }
+    }
+
+    const c1=new Carro('Normal', 4) //cria a carro
+    c1.ligar() //liga o carro
+    c1.setCor('Preto') //define a cor
+
+    const c2=new Militar('Lutador', 1, 100, 50)
+    c2.atirar()
+    c2.atirar()
+    c2.atirar()
+    c2.atirar()
+    
+
+
+    console.log(`Nome: ${c1.nome}`)
+    console.log(`Portas: ${c1.portas}`)
+    console.log(`Ligado: ${(c1.ligado?'Sim':'Não')}`)    
+    console.log(`Velocidade: ${c1.vel}`)
+    console.log(`Cor: ${c1.cor}`)
+    console.log('------------------------')
+
+    console.log(`Nome: ${c2.nome}`)
+    console.log(`Portas: ${c2.portas}`)
+    console.log(`Ligado: ${(c2.ligado?'Sim':'Não')}`)    
+    console.log(`Velocidade: ${c2.vel}`)
+    console.log(`Blindagem: ${c2.blindagem}`)
+    console.log(`Munição: ${c2.municao}`)
+    console.log(`Cor: ${c2.cor}`)
+    console.log('------------------------')
+</script>

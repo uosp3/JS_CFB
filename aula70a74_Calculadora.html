@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 70 - Calculadora</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        
+        .calc {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            position: absolute;           
+            left: -230px;
+            transition: all 1s;
+        }
+
+        .calc_exibir {
+            left: 0px !important;
+            transition: all 1s;
+        }
+        
+        .calc_principal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #eee;
+            border: 3px solid #bbb;
+            width: 230px;
+            border-radius: 5px;
+        }
+        .div_nome {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 220px;
+        }        
+        .div_teclas {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 220px;
+            flex-wrap: wrap;            
+        }
+        .tecla {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #aaa;
+            border: 3px solid #888;
+            border-radius: 10px;
+            font-weight: bold;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            margin: 2px;
+        }
+        .teclaOp {
+            background-color: #f44 !important;
+            color: #800 !important;
+        }
+        .div_display {
+            display: flex;
+            justify-content: center;
+            align-items: center;            
+            width: 220px;
+        }
+        .display {
+            width: 220px;
+            background-color: #8a8;
+            text-align: right;
+            padding: 5px;
+            font-family: monospace;
+            font-size: large;
+        }
+        .calc_aba {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 50px;
+            background-color: rgba(128,128,128,0.2);
+            border-radius: 0px 8px 8px 0px;
+            cursor: pointer;            
+        }
+
+    </style>
+</head>
+<body>
+    <div id="calc" class="calc">
+        <div id="calc_principal" class="calc_principal">
+            <div id="div_nome" class="div_nome">
+                <p>Calculadora CFB Cursos</p>
+            </div>
+            <div id="div_display" class="div_display">
+                <p id="display" class="display">0</p>
+            </div>
+            <div id="div_teclas" class="div_teclas">
+                <button id="tcpy" class="tecla teclaOp">CPY</button>
+                <button id="tlimpar" class="tecla">CL</button>
+                <button id="t(" class="tecla num">(</button>
+                <button id="t)" class="tecla num">)</button>
+                <button id="t7" class="tecla num">7</button>
+                <button id="t8" class="tecla num">8</button>
+                <button id="t9" class="tecla num">9</button>
+                <button id="t+" class="tecla teclaOp op">+</button>
+                <button id="t4" class="tecla num">4</button>
+                <button id="t5" class="tecla num">5</button>
+                <button id="t6" class="tecla num">6</button>
+                <button id="t-" class="tecla teclaOp op">-</button>
+                <button id="t1" class="tecla num">1</button>
+                <button id="t2" class="tecla num">2</button>
+                <button id="t3" class="tecla num">3</button>
+                <button id="t*" class="tecla teclaOp op">x</button>
+                <button id="t0" class="tecla num">0</button>
+                <button id="tseparador" class="tecla num">.</button>
+                <button id="tigual" class="tecla teclaOp res">=</button>
+                <button id="t/" class="tecla teclaOp op">/</button>
+            </div>
+        </div>
+        <div id="calc_aba" class="calc_aba">
+           <img id="img_aba_calc" src="seta_direita.png" alt="">
+        </div>        
+    </div>
+    <input size="35px" placeholder="Clique na seta para exibir a calculadora" type="text" id="teste" name="teste" style="border:1px solid #000;">
+</body>
+</html>
+<script>
+    const teclasNum=[...document.querySelectorAll('.num')]
+    const teclasOp=[...document.querySelectorAll('.op')]
+    const teclaRes=document.querySelector('.res')
+    const display=document.querySelector('.display')
+    const ton=document.getElementById('ton')
+    const tlimpar=document.getElementById('tlimpar')
+    const tigual=document.getElementById('tigual')
+    const tcpy=document.getElementById('tcpy')
+    const teste=document.getElementById('teste') //teste para ver como fica a copia em um text.
+    const calc_aba=document.getElementById('calc_aba')
+    const calc=document.getElementById('calc')
+    const img_aba_calc=document.getElementById('img_aba_calc')
+
+    let sinal=false
+    let decinal=false
+
+    teclasNum.forEach((el)=>{
+        el.addEventListener('click', (evt)=>{
+            sinal=false           
+            if(evt.target.innerHTML=='.'){
+                if(!decinal){                    
+                    decinal=true
+                    if(display.innerHTML=='0'){
+                        display.innerHTML='0,'
+                    }else{
+                        display.innerHTML+=evt.target.innerHTML
+                    }
+                }
+            }else{
+                if(display.innerHTML=='0'){
+                 display.innerHTML=''
+            }
+                display.innerHTML+=evt.target.innerHTML
+            }
+
+        })
+    })
+        teclasOp.forEach((el)=>{
+        el.addEventListener('click', (evt)=>{            
+            if(!sinal){            
+                sinal=true
+                if(display.innerHTML=='0'){
+                    display.innerHTML=''
+                }
+                if(evt.target.innerHTML=='x'){
+                    display.innerHTML+='*'
+                    decinal=false
+                }else{
+                    display.innerHTML+=evt.target.innerHTML
+                    decinal=false
+                }
+            }
+
+        })
+    })
+
+    tlimpar.addEventListener('click', (evt)=>{
+        sinal=false
+        decinal=false
+        display.innerHTML='0'
+    })
+
+    tigual.addEventListener('click', (evt)=>{
+        sinal=false
+        decinal=false
+        const res=eval(display.innerHTML)
+        display.innerHTML=Math.round(res*100)/100
+    })
+
+    tcpy.addEventListener('click',(evt)=>{
+        navigator.clipboard.writeText(display.innerHTML)
+        // teste.select()
+        // teste.setSelectionRange(0,999)//mobile
+        // navigator.clipboard.writeText(teste.value)
+    })
+
+    calc_aba.addEventListener('click', (evt)=>{
+        calc.classList.toggle('calc_exibir')
+        if(calc.classList.contains('calc_exibir')){
+            img_aba_calc.setAttribute('src', 'seta_esquerda.png')
+        }else{
+            img_aba_calc.setAttribute('src', 'seta_direita.png')
+        }
+    })
+    
+</script>

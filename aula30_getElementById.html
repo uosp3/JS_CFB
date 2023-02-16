@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método MAP</title>
+</head>
+<body>    
+    <div id="c1">HTML</div>
+    <div id="c2">CSS</div>
+    <div id="c3">JavaScript</div>
+    <div id="c4">PHP</div>
+    <div id="c5">React</div>
+    <div id="c6">MySQL</div>
+    
+</body>
+</html>
+<script>
+    //verificar dados no console (F12)
+const dc1=document.getElementById('c1');
+const dc2=document.getElementById('c2');
+const dc3=document.getElementById('c3');
+const dc4=document.getElementById('c4');
+const dc5=document.getElementById('c5');
+const dc6=document.getElementById('c6');
+
+console.log(dc1); //mostra todo o elemento com seus dados
+console.log(dc1.id);//mostra o id do elemento
+console.log(dc1.innerHTML);//mostra o conteudo (texto) atual do elemento
+//dc1.innerHTML="Edson"//altera o texto do elemento.
+
+const arrayElementos=[dc1, dc2, dc3, dc4, dc5, dc6];//cria um array dos elementos
+
+for(d of arrayElementos){
+    d.innerHTML="Edson" //altera o conteúdo de todos os elementos da array par "Edson"
+}
+console.log(arrayElementos)
+
+
+//outra opção:
+arrayElementos.map((e)=>{ //map percorre todos os elementos do array
+    console.log(e)
+    e.innerHTML="Edson" //altera o conteúdo de todos os elementos da array par "Edson"
+})
+
+</script>

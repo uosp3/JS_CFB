@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        border: none;
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      form {
+        display: flex;
+        width: 300px;
+        flex-direction: column;
+      }
+      input {
+        border: 3px solid #aaa;
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 5px 30px;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #888;
+        color: #fff;
+      }
+      img {
+        border-radius: 10px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <label>Nome</label>
+      <input id="f_nome" type="text" minlength="4" maxlength="8" requerid />
+      <label>Nota</label>
+      <input id="f_nota" type="number" min="0" max="10" required />
+      <button id="btn_validar">Validar</button>
+      <p id="f_msg"></p>
+    </form>
+    <img src="Validacao.jpg" alt="" />
+  </body>
+</html>
+<script>
+  const f_nome = document.querySelector("#f_nome")
+  const f_nota = document.querySelector("#f_nota")
+  const f_msg = document.querySelector("#f_msg")
+
+  document.querySelector("#btn_validar").addEventListener("click", (evt) => {
+    let msg = null
+
+    if (!f_nota.checkValidity()) {
+      msg = f_nota.validationMessage
+    }
+
+    f_msg.innerHTML = msg
+    evt.preventDefault()
+  })
+</script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        .objetos{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px;
+            border: 3px solid #888;
+            background-color: #eee;
+        }
+        .computador{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            background-color: #fff;
+            margin: 0px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="objetos" class="objetos"></div>
+</body>
+</html>
+<script>
+    const objetos=document.getElementById('objetos')
+
+    const computador={
+        cpu:'i9',
+        ram:'64gb',
+        hd:'2tb',
+        info:function(){
+            console.log(`CPU: ${this.cpu}`)
+            console.log(`RAM: ${this.ram}`)
+            console.log(`HD: ${this.hd}`)
+        }
+    }
+
+    computador['monitor']='22pol' //add propriedades
+    computador.placaVideo='rtx'  //outra forma de add propriedade
+    delete(computador.hd) //deleta uma propriedade
+
+    //formas de imprimir so uma propriedade
+    //console.log(computador.cpu)
+    //console.log(computador['ram'])
+
+    //assing = clona
+    const c1=Object.assign({}, computador)
+    c1.info()
+
+    //assing = mescla
+    const o1={obj1: '1'}
+    const o2={obj2: '2'}
+    const o3={obj3: '3'}
+    const o4=Object.assign(o1,o2,o3)
+    console.log(o4)
+
+    const c2=Object.create(computador)
+    c2.cpu='ADM'
+    c2.ram='16gb'
+    c2.hd='3tb'
+    c2.info()
+
+
+
+
+    const computadores=[
+        { cpu:'i9',
+        ram:'64gb',
+        hd:'2tb'
+    },
+    {
+        cpu:'i7',
+        ram:'32gb',
+        hd:'2tb'
+    },
+    {
+        cpu:'i5',
+        ram:'32gb',
+        hd:'1tb'
+    }   
+    ]
+
+    computadores.forEach((c)=>{
+        //console.log(c)
+        const div=document.createElement('div')
+        div.innerHTML=c.cpu+'<br>'+c.ram+'<br>'+c.hd
+        div.setAttribute('class', 'computador')
+        objetos.appendChild(div)
+    })
+
+    // computador.info()
+    // console.log(computadores)
+    // objetos.innerHTML=JSON.stringify(computadores)//para exibir na pag
+
+</script>

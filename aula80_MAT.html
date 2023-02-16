@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .mat{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 500px;
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            border: 3px solid #888;
+            font-size: xx-large;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="mat" class="mat">0</div>
+</body>
+</html>
+<script>
+    const mat=document.getElementById('mat')
+    const num=Math.random()//retorna um número entre 0 e 1
+    mat.innerHTML=Math.floor(num*100) //floor pega so a parte inteira do numero   
+</script>

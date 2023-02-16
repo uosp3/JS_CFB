@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 50 - REDUCE</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        .caixa {
+            border: 5px solid #000;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            padding: 5px;            
+        }
+        .verde {
+            border-color: rgb(20,120,23) !important;
+            background-color: rgb(220,255,225) !important;
+        }
+        .azul {
+            border-color: rgb(20, 60, 120) !important;
+            background-color: rgb(220,230,255) !important;            
+        }
+        .vermelho {
+            border-color: rgb(120, 20, 20) !important;
+            background-color: rgb(255, 220, 220) !important;            
+        }
+        button {
+            width: 150px;
+            height: 40px;
+            background-color: #025;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="caixa_array" class="caixa verde">
+        <p>Array:</p>
+        <p id="array"></p>
+    </div>
+    <div  id="caixa_verificar" class="caixa azul">        
+        <button id="btnReduzir">Reduzir</button>
+    </div>
+    <div id="caixa_resultado" class="caixa vermelho">
+        <p>Resultado: </p>
+        <p id="resultado"></p>
+    </div>
+</body>
+</html>
+
+<script>
+    const p_array=document.querySelector('#array')   
+    const btnReduzir=document.querySelector('#btnReduzir')
+    const resultado=document.querySelector('#resultado')
+
+    //ARRAY DO QUE COMPÕE A BASE ONDE SERÁ FEITA A PESQUISA
+    const elementos_array=[1,2,3,4,5] 
+    let ant=[] 
+    let atu=[] 
+    let dobro=[]  
+    p_array.innerHTML='['+elementos_array+']'
+
+    //FAZ A BUSCA NA BASE, PEGA OS ELEMENTOS ANTERIOR, ATUAL E POSIÇÃO.
+    btnReduzir.addEventListener('click', (evt)=>{
+        dobro.push(elementos_array[0]*2)
+        atu.push(elementos_array[0])
+        resultado.innerHTML=elementos_array.reduce((anterior, atual, pos)=>{
+            ant.push(anterior)
+            atu.push(atual)
+            dobro.push(atual*2)
+            return atual+anterior            
+        })
+        resultado.innerHTML+='<br>Anterior: '+ant+'<br>Atual: '+atu+'<br>Dobro: '+dobro
+    })
+</script>

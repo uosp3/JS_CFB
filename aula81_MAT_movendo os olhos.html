@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .olhos{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: 400px;
+            height: 200px;
+        }
+        .olho{
+            width: 200px;
+            height: 200px;
+            transform-origin: center center;
+            border-radius: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="olhos">
+        <img id="olho_e" src="olho.png" class="olho">
+        <img id="olho_d" src="olho.png" class="olho">
+    </div>
+</body>
+</html>
+<script>
+    const olhos=[...document.getElementsByClassName('olho')]
+
+    let posx_mouse=0
+    let posy_mouse=0
+
+    window.addEventListener('mousemove', (evt)=>{
+        posx_mouse=evt.clientX //pega a posição do mouse na tela
+        posy_mouse=evt.clientY
+
+        //pega as posições x e y, em radianos e transforma em graus
+        const rot=Math.atan2(posy_mouse, posx_mouse) * 180/Math.PI
+
+        olhos.forEach((o)=>{
+            o.style.transform='rotate('+rot+'deg)'
+        })
+    })
+
+</script>

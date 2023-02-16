@@ -1,0 +1,32 @@
+<script>
+    let nome=new String('Edson Gomes dos Santos 1961')
+    let nome2=new String('Edsonnnn Gomesssss dos Santos 1961')
+    let numeros='1, 10, 100, 1000, 12000'
+
+    console.log(nome)
+    
+    console.log(nome.search('Gomes')) //procura pelo parâmetro na string e retorna a posicão inicial
+    console.log(nome.search(/gomes/i)) //mesmo caso acima, ignora o case sentitive.
+
+    console.log(nome.match('t')) //localiza o parâmetro(so o primeiro) na string e retorna a posição.
+    console.log(nome.match(/T/ig)) //mesmo caso acima, ignora o case sensitive e busca todos os parâmetros
+    console.log(nome.match(/[Tn]/ig)) //neste caso(com colchete) procura 't' e também o 'n', mesmo que estejam separados
+    console.log(nome.match(/[a-j]/ig)) // procura de 'a' até 'j'
+    console.log(nome.match(/[a-j|0-9]/ig)) // procura de 'a' até 'j' e também de zero até 9
+
+    //Metacaracteres
+    console.log(nome.match(/\d/ig)) // procura de numeros
+    console.log(nome.match(/\s/ig)) // procura espaços
+    console.log(nome.match(/\Bn/ig)) // procura a letra 'n', em qualquer posição
+    console.log(nome.match(/\bS/ig)) // procura a letra 'G', no início da palavra.
+
+    //Quantificadores
+    console.log(nome2.match(/n+|s+/ig)) // procura a letra 's' e tb a 's' juntas, sem o '+' mostra separados
+    console.log(nome.match(/on*/ig)) // procura 'on' e também os 'o' restantes que não são seguidos de 'n'
+    console.log(numeros.match(/10?/ig)) // procura o '1' e também os '1' seguidos de zero
+
+    console.log(nome.replace('Gomes', 'teste')) //substitui o texto na string
+    console.log(nome.replace(/gomes/i, 'teste2'))//mesmo caso acima, ignora case sensitive
+    console.log(nome.replace(/o/ig, 'teste3')) //mesmo caso, agora substitui todos os caractes (parâmentro) e ignora case sensitive
+
+</script>

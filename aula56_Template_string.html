@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 56 - Template Strings</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            border: none;
+            box-sizing: border-box;
+            font-size: large;
+        }
+        .caixa{
+            border: 5px solid rgb(179, 92, 92);
+            width: 400px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>    
+    <div id="caixa" class="caixa"></div>    
+</body>
+</html>
+
+<script>
+    const caixa=document.querySelector('#caixa')
+
+    const curso='JavaScript'
+    const canal='CFB Cursos'
+    //const frase='Este é o curso de ' + curso + ' do canal '  + canal
+    //a linha acima fica mais fácil da forma que está na linha abaixo. Para funcionar tem que usar crase e não aspas. OBS: a quebra de linha é feita com <br> normalmente. O \n quebra a linha mas so aparece quebrada no console.
+    const frase=`Este é o curso <br>\n de ${curso} do canal ${canal}`
+    console.log(frase)
+
+    caixa.innerHTML=frase
+</script>

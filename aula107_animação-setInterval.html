@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border:none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .painel{
+            position: relative;
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #eee;
+        }
+        button{
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            background-color: #ccc;
+        }
+        .carro{
+            background-color: #f00;
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body id="tela">
+    <div id="painel" class="painel">
+        <button id="btn_parar">Parar</button>
+        <button id="btn_esquerda">&lt;-</button>
+        <button id="btn_direita">-&gt;</button>
+    </div>
+    <div id="carro" class="carro"></div>
+</body>
+</html>
+<script>
+    const carro=document.getElementById('carro')
+    const tela=document.getElementById('tela')
+    const btn_parar=document.getElementById('btn_parar')
+    const btn_esquerda=document.getElementById('btn_esquerda')
+    const btn_direita=document.getElementById('btn_direita')
+
+    let larguraTela=tela.offsetWidth
+
+    window.addEventListener('resize', (evt)=>{
+        larguraTela=tela.offsetWidth
+        console.log(larguraTela)
+    })
+
+    const init=()=>{
+        carro.style='position:relative;left:0px'
+    }
+
+    let anima=null
+
+    const move=(dir)=>{
+        //console.log(parseInt(carro.style.left) + (10*dir)+'largura'+larguraTela)
+        if (parseInt(carro.style.left) + (10*dir) + 100 < larguraTela && dir==1){
+        carro.style.left=parseInt(carro.style.left) + (10*dir) + 'px'
+        }
+         if(((parseInt(carro.style.left) + (10*dir)) > 0) && dir==-1){
+            carro.style.left=parseInt(carro.style.left) + (10*dir) + 'px'
+        }
+        }
+    
+
+    btn_parar.addEventListener('click',()=>{
+        clearInterval(anima)
+    })
+
+    btn_esquerda.addEventListener('click',()=>{ 
+        clearInterval(anima)       
+        anima=setInterval(move, 20, -1)
+    })
+   
+    btn_direita.addEventListener('click',()=>{
+        clearInterval(anima)
+        anima=setInterval(move, 20, 1)
+    })
+
+    window.onload=init
+</script>

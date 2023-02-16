@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getElementByClassName</title>
+    <style>
+        .curso {
+            display: flex;
+            justify-content: center;
+            width: 200px;
+            border: 4px solid #888;
+            border-radius: 10px;
+            padding: 5px;
+            margin: 5px 0px;
+            cursor: pointer;
+        }
+        .curso:hover {
+            border-color: #f00;
+        }
+        .c1 {
+            background-color: #ccc;
+            color: #444;
+        }
+        .c2 {
+            background-color: #444;
+            color: #ccc;
+        }
+        .destaque {
+            background-color: #800 !important;
+            color: #fcc !important;
+            border-color: #f00 !important;
+        }
+    </style>
+</head>
+<body>    
+    <div id="c1" class="curso c1">HTML</div>
+    <div id="c2" class="curso c1">CSS</div>
+    <div id="c3" class="curso c1">JavaScript</div>
+    <div id="c4" class="curso c1">PHP</div>
+    <div id="c5" class="curso c1">React</div>
+    <div id="c6" class="curso c1">MySQL</div>
+    <div id="c7" class="curso c2">C++</div>
+    <div id="c8" class="curso c2">C#</div>
+    <div id="c9" class="curso c2">Arduino</div>
+    <div id="c10" class="curso c2">React Native</div>
+    <div id="c11" class="curso c2">Python</div>    
+    <div id="c12" class="curso c2">Raspberry</div>
+    <P id="c13">Photoshop</P>
+    <P id="c14">AppInventor</P>
+    
+</body>
+</html>
+<script>
+    const divTodas = [...document.getElementsByTagName('div')]
+const cursosTodos=[...document.getElementsByClassName('curso')] //pega a coleção da classe 'curso' o transforma(com spred) em array. O mesmo caso das duas linhas abaixo.
+const cursosC1=[...document.getElementsByClassName('c1')]
+const cursosC2=[...document.getElementsByClassName('c2')]
+const cursoEspecial=document.getElementById('c1')
+
+//NOS CASOS ABAIXO PODE USAR DUAS OU MAIS TAG ENTRE OS PARÊNTESES
+const query_div=document.querySelector('div')//pega so a primeira div do array, índice zero.
+
+const query_divTodas=[...document.querySelectorAll('div,p')]//pega a coleção de DIV em um array
+const query_divTodas2=[...document.querySelectorAll('div[class]')]//pega a coleção de DIV, mas APENAS as que tem o atributo "class"
+const query_divTodas3=[...document.querySelectorAll('div > p')]// pega a coleção de DIV que em P dentro dela.
+
+const query_cursosTodos=[...document.querySelectorAll('.curso')] //pega a coleção da classe ".curso" com o um array.
+
+const query_cursoEspecial=document.querySelector('#c2')// pegar o elemento pelo ID
+
+ console.log(query_divTodas)
+
+</script>

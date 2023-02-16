@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border:none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .painel{
+            position: relative;
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #eee;
+        }
+        button{
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            background-color: #ccc;
+        }
+        .carro{
+            background-color: #f00;
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body id="tela">
+    <div id="painel" class="painel">
+        <button id="btn_parar">Parar</button>
+        <button id="btn_esquerda">&lt;-</button>
+        <button id="btn_direita">-&gt;</button>
+    </div>
+    <div id="carro" class="carro"></div>
+</body>
+</html>
+<script>
+    const carro=document.getElementById('carro')
+    const tela=document.getElementById('tela')
+    const btn_parar=document.getElementById('btn_parar')
+    const btn_esquerda=document.getElementById('btn_esquerda')
+    const btn_direita=document.getElementById('btn_direita')
+
+    let tamMax=null      
+
+    const init=()=>{
+        carro.style='position:relative;left:0px;width:100px'        
+        tamMax=window.innerWidth - parseInt(carro.style.width)
+    }
+
+    let anima=null
+
+    const move=(dir)=>{        
+        if(dir>0){
+            if(parseInt(carro.style.left) <= tamMax){
+                carro.style.left=parseInt(carro.style.left) + (10*dir) + 'px'
+                anima=setTimeout(move,20,dir)
+            
+            if(parseInt(carro.style.left)>tamMax) {            
+            anima=setTimeout(move,20,dir*-1)            
+            }}
+        }   
+        if(dir<0){
+            if(parseInt(carro.style.left) >= 0){
+                carro.style.left=parseInt(carro.style.left) + (10*dir) + 'px'
+                anima=setTimeout(move,20,dir)
+
+            if(parseInt(carro.style.left) < 0) {            
+            anima=setTimeout(move,20,dir*-1)            
+            }}
+        }
+        
+        console.log(tamMax)
+        console.log('tam carro' + parseInt(carro.style.left))
+        }    
+
+    btn_parar.addEventListener('click',()=>{
+        clearTimeout(anima)
+    })
+
+    btn_esquerda.addEventListener('click',()=>{ 
+        clearTimeout(anima)
+        move(-1)       
+        
+    })
+   
+    btn_direita.addEventListener('click',()=>{
+        clearTimeout(anima)
+        move(1)
+    })
+
+    window.addEventListener('load', init())
+    window.addEventListener('resize', ()=>{
+        tamMax=window.innerWidth - parseInt(carro.style.width)
+    })
+</script>

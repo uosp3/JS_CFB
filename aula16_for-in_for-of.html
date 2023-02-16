@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For in o for of</title>
+</head>
+<body>
+    <h1>For In e For Of</h1>
+    <div>Edson</div>
+    <div>CFG Cursos</div>
+    <div>Novo Curso de JavaScript</div>
+    <script>        
+        const objs=document.getElementsByTagName("div")
+
+        for(o of objs){ //retorna os elementos html (div)
+            document.write(o + "<br>")
+            document.write("<hr>")
+        }
+        for(o in objs){//retorna os índices dos elementos html (div)
+            document.write(o + "<br>")
+            document.write("<hr>")
+        }
+    </script>
+
+</body>
+</html>
+<script>
+    let num = [10,20,30,40,50];
+
+for (n in num){ //retorna os índices do array
+    console.log(n)
+}
+
+for (n of num) { //retorna os elementos do array
+    console.log(n)
+}
+</script>

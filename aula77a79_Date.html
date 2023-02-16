@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .timer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 300px;
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            border: 3px solid #888;
+        }
+        .div_relogio{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            background-color: #444;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: larger;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        input[type='number']{
+            border: 1px solid #000;
+            font-size: larger;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        button{
+            background-color: #aaa;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .alarme{
+            background-color: #f00 !important;
+        }
+    </style>
+</head>
+<body>
+    <div id='timer' class="timer">
+        <div id="div_data"></div>
+        <div id="div_relogio" class="div_relogio">00:00:00</div> 
+        <div id="def_alarme" class="def_alarme">
+            <label id="hora_alarme">Hora do Alarme</label><br>
+            <label>Tempo do alarme (segundos)</label>
+            <input type="number" value="0" id="tmp_alarme" min="0">
+        </div>  
+        <div id="comandos" class="comandos">
+            <button id="btn_ativar">Ativar</button>
+            <button id="btn_parar">Parar</button>
+        </div> 
+    </div>
+</body>
+</html>
+<script>
+    const div_data=document.getElementById('div_data')
+    const div_relogio=document.getElementById('div_relogio')    
+    const btn_ativar=document.getElementById('btn_ativar')
+    const btn_parar=document.getElementById('btn_parar')
+    const tmp_alarme=document.getElementById('tmp_alarme')
+    const hora_alarme=document.getElementById('hora_alarme')
+    const timer=document.getElementById('timer')
+
+    const som_alarme=new Audio('alarme.mp3')
+    som_alarme.loop=false //quantidade de vezes que toca (-1 para continuamente)
+
+    let ts_atual=null
+    let ts_alarme=null
+    let alarme_ativado=false
+    let alarme_tocando=false
+
+    btn_ativar.addEventListener('click', ()=>{
+        ts_atual=Date.now()
+        ts_alarme=ts_atual+(tmp_alarme.value*1000)
+        alarme_ativado=true
+
+        const dt_alarme=new Date(ts_alarme)
+        let hora_a=dt_alarme.getHours()
+        hora_a=hora_a<10?'0'+hora_a:hora_a        
+        let minuto_a=dt_alarme.getMinutes()
+        minuto_a=minuto_a<10?'0'+minuto_a:minuto_a    
+        let segundo_a=dt_alarme.getSeconds()
+        segundo_a=segundo_a<10?'0'+segundo_a:segundo_a    
+        const hora_a_completa=hora_a+':'+minuto_a+':'+segundo_a        
+        hora_alarme.innerHTML='Hora do Alarme:'+ hora_a_completa
+    })
+
+    btn_parar.addEventListener('click', ()=>{
+        alarme_ativado=false
+        alarme_tocando=false
+        hora_alarme.innerHTML='Hora do Alarme'
+        tmp_alarme.value=0
+        timer.classList.remove('alarme') //remover a classe
+        som_alarme.pause();
+        som_alarme.currentTime=0;
+        tmp_alarme.disabled=false
+    })
+
+
+    const data=new Date()
+
+    let dia=data.getDate()
+    dia=dia<10?'0'+dia:dia    
+    let mes=data.getMonth()+1
+    mes=mes<10?'0'+mes:mes    
+    const data_r=dia+'/'+mes+'/'+data.getFullYear()    
+    div_data.innerHTML=data_r
+    
+    
+    function relogio(){
+        const data=new Date()
+        let hora=data.getHours()
+        hora=hora<10?'0'+hora:hora        
+        let minuto=data.getMinutes()
+        minuto=minuto<10?'0'+minuto:minuto    
+        let segundo=data.getSeconds()
+        segundo=segundo<10?'0'+segundo:segundo    
+        const hora_completa=hora+':'+minuto+':'+segundo
+        div_relogio.innerHTML=hora_completa
+        if(alarme_ativado && !alarme_tocando){
+            if(data.getTime() >= ts_alarme){
+                alarme_tocando=true
+                som_alarme.play()                
+                
+                som_alarme.loop =false;
+                som_alarme.playbackRate = 2; 
+
+                timer.classList.add('alarme')
+                tmp_alarme.disabled=true               
+            }
+        }        
+    }
+    const intervalo=setInterval(relogio, 1000);    
+
+    /*
+    console.log(Date.now()) //timestamp (milesegundos desde 01/01/1970)
+    
+Método	Descrição	Valores retornados
+getDate()	O dia do mês	1 a 31
+getUTCDate()
+getDay()	O valor inteiro do dia da semana	0 a 6
+getUTCDay()
+getFullYear()	O ano com quatro dígitos	1900 em diante
+getUTCFullYear
+getHours()	A hora do dia	0 a 23
+getUTCHours()
+getMilliseconds()	O número de milissegundos desde o último segundo	0 a 999
+getUTCMilliseconds()
+getMinutes()	O número de minutos desde a última hora	0 a 59
+getUTCMinutes()
+getMonth()	O mês do ano	0 a 11
+getUTCMonth()
+getSeconds()	O número de segundos desde o último minuto	0 a 59
+getUTCSeconds()
+getTime()	O número de milissegundos desde a meia noite de 1º de janeiro de 1970
+getTimezoneOffset()	Diferença entre hora local e GMT em minutos	0 a 1439
+getYear()	O ano da data	0 a 99 para os anos de 1900 a 1999 e quatro dígitos em diante
+parse()	Dado um string de data/hora, retorna o número de milissegundos desde meia noite de 1º de jan. de 1970
+setDate()	Define o dia, dado o número entre 1 e 31	Data em milissegundos
+setUTCDate()	Data em milissegundos
+setFullYear()	Data em milissegundos
+setUTCFullYear()	Data em milissegundos
+setHours()	Define a hora, dado um número entre 0 e 23	Data em milissegundos
+setUTCHours()
+setMilliseconds()	Define os milissegundos, dado um número	Data em milissegundos
+setUTCMilliseconds()	Data em milissegundos
+setMinutes()	Define os minutos, dado um número entre 0 e 59	Data em milissegundos
+setUTCMinutes()
+setMonth()	Define o mês, dado um número entre 0 e 11.	Data em milissegundos
+setUTCMonth()
+setSeconds()	Define os segundos, dado um número entre 0 e 59	Data em milissegundos
+setUTCSeconds()
+setTime()	Define uma data, dado um número de milissegundos desde janeiro de 1970	Data em milissegundos
+setYear()	Define o ano, dado um número de dois ou quatro dígitos	Data em milissegundos
+toGMTString()	A data e hora GMT em formato de string	Day dd mmm yyyy, hh:mm:ss GMT
+toUTCString()
+TolocaleString()	A data e hora local em formato de string	Varia de acordo com o SO, localidade e navegador
+toString()	A data e hora local em formato de string	Varia de acordo com o SO e o navegador
+UTC()	Sendo dada uma data no formato de ano, mês e dia (e horas, minutos, segundos e milissegundos opcionais), retorna o número de milissegundos desde a meia noite de 1º de jan. de 1970	Data em milissegundos
+valueOf()	Número de milissegundos desde a meia noite de 1º de janeiro de 1970	Data em milissegundos
+*/
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método MAP</title>
+</head>
+<body>    
+    <div id="c1">HTML</div>
+    <div id="c2">CSS</div>
+    <div id="c3">JavaScript</div>
+    <div id="c4">PHP</div>
+    <div id="c5">React</div>
+    <div id="c6">MySQL</div>
+    
+</body>
+</html>
+<script>
+    //Rodar o arquivo no navegador e observar o log(F12)
+let el=document.getElementsByTagName("div")
+el=[...el]
+console.log(el)
+el.map((e,i)=>{
+    console.log(e.innerHTML)
+    //e.innerHTML="Substituir o conteúdo das div pelo que estiver aqui." (linha comentada para que não faça a substituição do conteúdo.)
+})
+
+
+
+
+
+const cursos=['HTML', 'CSS', 'Javascript', 'PHP', 'React'];
+cursos.map((el, i)=>{      //elemento, indice (pode ser atribuido a uma variável e usar um return)
+    console.log("Curso: " + el + " - Posição do curso: " + i)
+})
+</script>
