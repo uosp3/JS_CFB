@@ -12,6 +12,17 @@
         margin: 0px;
         box-sizing: border-box;
       }
+      .main {
+        display: flex;
+        justify-content: space-around;
+        align-self: flex-start;
+        width: 100%;
+      }
+      #divTimer {
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+      }
       #timer {
         background-color: #333;
         color: #0f0;
@@ -24,16 +35,48 @@
         border-radius: 10px;
         border: 5px solid #888;
       }
+      #botoes {
+        display: flex;
+        justify-content: space-around;
+      }
+      .btn {
+        cursor: pointer;
+        background-color: #ccc;
+        width: 100%;
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+      }
     </style>
   </head>
   <body>
-    <p id="timer">00:00:00</p>
+    <div id="main" class="main">
+      <div id="divTimer">
+        <p id="timer">00:00:00</p>
+        <div id="botoes">
+          <button id="btn_iniciar" class="btn">Iniciar</button>
+          <button id="btn_parcial" class="btn">Parcial</button>
+          <button id="btn_parar" class="btn">Parar</button>
+          <button id="btn_zerar" class="btn">Zerar</button>
+        </div>
+      </div>
+      <div id="parciais" class="parciais">
+        <h2>Parciais</h2>
+        <div id="parciaisregistradas" class="parciaisregistradas"></div>
+      </div>
+    </div>
   </body>
 </html>
 <script>
   const timer = document.querySelector("#timer")
+  const btn_iniciar = document.querySelector("#btn_iniciar")
+  const btn_parcial = document.querySelector("#btn_parcial")
+  const btn_parar = document.querySelector("#btn_parar")
+  const btn_zerar = document.querySelector("#btn_zerar")
+  const parciaisregistradas = document.querySelector("#parciaisregistradas")
 
-  const tmpini = Date.now()
+  let intervalo = null
+  let tmpini = null
 
   const contador = () => {
     const tmpatual = Date.now()
@@ -45,16 +88,35 @@
   const converter = (seg) => {
     let hora = Math.floor(seg / 3600)
     let resto = seg % 3600
-    let minuto = Math.floor(resto/60)
-    let segundo = Math.floor(resto%60)
-    let form =
+    let minuto = Math.floor(resto / 60)
+    let segundo = Math.floor(resto % 60)
+    let tempoformatado =
       (hora < 10 ? "0" + hora : hora) +
       ":" +
       (minuto < 10 ? "0" + minuto : minuto) +
       ":" +
       (segundo < 10 ? "0" + segundo : segundo)
-    return form
+    return tempoformatado
   }
 
-  setInterval(contador, 1000)
+  btn_iniciar.addEventListener("click", (evt) => {
+    tmpini = Date.now()
+    intervalo = setInterval(contador, 1000)
+  })
+
+  btn_parcial.addEventListener("click", (evt) => {
+    let parcial = "<div>" + timer.innerHTML + "</div>"
+    parciaisregistradas.innerHTML += parcial
+  })
+
+  btn_parar.addEventListener("click", (evt) => {
+    clearInterval(intervalo)
+  })
+
+  btn_zerar.addEventListener("click", (evt) => {
+    //tmpini = Date.now()    //======= opcional ??
+    timer.innerHTML = "00:00:00"
+    clearInterval(intervalo)
+    parciaisregistradas.innerHTML = ""
+  })
 </script>
