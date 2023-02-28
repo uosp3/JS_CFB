@@ -8,38 +8,15 @@
   </head>
   <body>
     <button id="btn_mostrarcxmsg" class="btn_mostrarcxmsg">
-      Mostrar Caixa de Mensagem1
+      Mostrar Caixa de Mensagem 1
     </button>
     <button id="btn_mostrarcxmsg2" class="btn_mostrarcxmsg">
-      Mostrar Caixa de Mensagem2
+      Mostrar Caixa de Mensagem 2
     </button>
     <button id="btn_mostrarcxmsg3" class="btn_mostrarcxmsg">
-      Mostrar Caixa de Mensagem3
+      Mostrar Caixa de Mensagem 3
     </button>
     <script src="aula133_topo.js"></script>
-    <script src="aula135_cxmsg.js"></script>
+    <script src="aula135.js" type="module"></script>
   </body>
 </html>
-<script>
-  const config = {
-    //titulo: "CFB Cursos",
-    //texto: "Curso de JavaScript, criando caixa de mensagem personalizada",
-    cor: "#48f",
-  }
-
-  const cxmsg = new Cxmsg(config)
-
-  const btn_mostrarcxmsg = document.querySelector("#btn_mostrarcxmsg")
-  const btn_mostrarcxmsg2 = document.querySelector("#btn_mostrarcxmsg2")
-  const btn_mostrarcxmsg3 = document.querySelector("#btn_mostrarcxmsg3")
-
-  btn_mostrarcxmsg.addEventListener("click", () => {
-    cxmsg.mostrar('CFB Cursos', 'Curso de JavaScript')
-  })
-  btn_mostrarcxmsg2.addEventListener("click", () => {
-    cxmsg.mostrar('YouTube', 'Canal com cursos de programação')
-  })
-  btn_mostrarcxmsg3.addEventListener("click", () => {
-    cxmsg.mostrar('JavaScritp', 'Aula 136')
-  })
-</script>
