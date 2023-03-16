@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Temperatura: <span id="tmp"></span></p>
+    <p>Nível: <span id="nvl"></span></p>
+    <p>Pressão: <span id="prs"></span></p>  
+  </body>
+</html>
+<script>
+  const tmp = document.querySelector("#tmp")
+  const nvl = document.querySelector("#nvl")
+  const prs = document.querySelector("#prs")
+
+  let dados = {
+    _temperatura: 0,
+    _pressao: 0,
+    _nivel: 0,
+    set valores(val) {
+      this._temperatura = val.temperatura
+      this._pressao = val.pressao
+      this._nivel = val.nivel
+      nvl.innerHTML = this._nivel
+      tmp.innerHTML = this._temperatura
+      prs.innerHTML = this._pressao
+    },
+
+    get valores() {
+      return [this._temperatura, this._pressao, this._nivel]
+    },
+  }
+
+  const buscarDados = () => {
+    const endpoint = "https://cfbcursos2.uosp3.repl.co"
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((res) => {
+        dados.valores = res
+      })
+  }
+
+  let intervalo = setInterval(buscarDados, 1000)
+
+  console.log(dados.valores)
+</script>
