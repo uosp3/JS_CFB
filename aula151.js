@@ -1,5 +1,4 @@
 import { Cxmsg } from "./aula151_cxmsg.js"
-import { Login } from "./aula141_login.js"
 
 const callback_ok = () => {}
 
@@ -22,4 +21,4 @@ const configlogin = {
   img: "./logo2.png",
   endpoint: "https://loginv1.uosp3.repl.co",
 }
-Login.login(callback_ok, callback_naook, config)
+Login.login(callback_ok, callback_naook, configlogin)
