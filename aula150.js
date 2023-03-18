@@ -7,7 +7,7 @@ const callback_naook = () => {
     cor: "#800",
     tipo: "ok",
     textos: null,
-    comando_sn: null,
+    comando_sn: () => {},
   }
   Cxmsg.mostrar(
     config,
@@ -15,4 +15,10 @@ const callback_naook = () => {
     "Login não efetuado! Usuário ou senha incorretos"
   )
 }
-Login.login(callback_ok, callback_naook)
+
+const configlogin = {
+  cor: "048", // "048",
+  img: "./logo2.png",
+  endpoint: "https://loginv1.uosp3.repl.co",
+}
+Login.login(callback_ok, callback_naook, config)
