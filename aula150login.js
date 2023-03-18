@@ -144,8 +144,7 @@ class Login {
       })
   }
 
-  static fechar = () => {
-    alert('teste')
+  static fechar = () => {    
     const fundoLogin = document.querySelector("#fundoLogin")
     fundoLogin.remove()
     const id_estiloLogin = document.querySelector("#id_estiloLogin")
