@@ -12,7 +12,7 @@ class Login {
     endpoint: null,
   }
   
-  static login = (callback_ok, callback_naook, config = null) => {
+  static login = (callback_ok, callback_naook, config) => {
     sessionStorage.setItem("logado", "false")
     sessionStorage.setItem("matlogado", "")
     sessionStorage.setItem("nomelogado", "")
