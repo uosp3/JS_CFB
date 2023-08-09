@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anotações</title>
+</head>
+<body>
+    <h2>Table usuario {
+        n_usuario_usuario int [pk, increment]
+        s_nome_usuario varchar
+        n_tipousuario_tipousuario int [ref: > tipousuario.n_tipousuario_tipousuario]
+        c_status_usuario char
+      }
+      
+      Table telefone {
+        n_telefone_telenome int [pk, increment]
+        n_usuario_usuario int [ref: > usuario.n_usuario_usuario]
+        s_ddd_telefone varchar
+        s_numero_telefone varchar
+      }
+      
+      Table tipousuario{
+        n_tipousuario_tipousuario int [pk, increment]
+        s_desc_tipousuario varchar
+        n_nivel_tipousuario int
+      }</h2>
+</body>
+</html>

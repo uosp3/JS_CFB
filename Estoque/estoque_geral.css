@@ -1,0 +1,347 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    /* box-sizing: border-box; */
+}
+:root{
+    --azul-principal:#005288;
+    --fundo-janela:#ccc;
+}
+body{
+    overflow: hidden;
+}
+.menuPrincipal{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 240px;
+    height: 100vh;
+}
+.esconderElemento{
+    display: none !important;
+}
+.ocultar{
+    left: -190px !important;
+    transition: all .2s;
+}
+.menuItens{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ccc;
+    height: 100%;
+}
+.btn_menuItem{
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px 15px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #000;
+    background-color: #888;
+    text-align: center;
+    color: #fff;
+}
+.btn_menuPrincipal{
+    cursor: pointer;
+    border: none;
+    width: 30px;
+}
+.principal{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh;
+}
+.fprincipal{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* FORMATAÇÃO DE GRIDS */
+.areaGrid{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+}
+.grid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.tituloGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: var(--azul-principal);
+    color: #fff;
+}
+.colunaTituloGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dadosGrid{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.linhaGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+.linhaGrid:nth-child(even){
+    background-color:#eee;
+}
+.linhaGrid:nth-child(odd){
+    background-color:#ccc;
+}
+.linhaGrid:hover{
+    background-color: #0ac !important;
+    color: #fff !important;
+}
+.ocultarLinhaGrid{
+    display: none !important;
+}
+.colunaLinhaGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icone_op{
+    width: 25px;
+    cursor: pointer;
+}
+/***********************/
+
+/* TOPO DA JANELA */
+.topoJanela{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px 10px 0px;
+}
+.btn_mainoper{
+    background-color: var(--azul-principal);
+    border-radius: 100px;
+    cursor: pointer;
+    width: 40px;
+}
+/************************/
+
+/* JANELA NOVO */
+.popup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+}
+.janelaPopup{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50%;
+}
+.tituloPopup{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    background-color: var(--azul-principal);
+    padding: 5px;
+    border-radius: 5px 5px 0px 0px;
+    width: 100%;
+}
+.corpoPopup{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: var(--fundo-janela);
+    padding: 5px;
+    width: 100%;
+}
+.rodapePopup{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    background-color: var(--azul-principal);
+    border-radius: 0px 0px 5px 5px;
+    padding: 5px;
+    width: 100%;
+}
+.btn_janelaopera{
+    width: 30px;
+    cursor: pointer;
+}
+.btn_comandoPopup{
+    background-color: #012d4b;
+    border: none;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.campoForm{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+}
+.campoForm2{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+.campoForm input, .campoForm select{
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    margin-bottom: 5px;
+}
+.campoFiltragem{
+    width: 300px;
+}
+.campoRadio{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+.inputFiltragem{
+    border: 3px solid #888 !important;
+}
+.filtragem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ocultarPopup{
+    display: none !important;
+}
+.telefones{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background-color: #fff;
+}
+.tel{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    margin: 5px;
+}
+.numTel{
+    background-color: #888;
+    border-radius: 5px 0px 0px 5px;
+    width: 100px;
+    padding: 5px;
+}
+.delTel{
+    background-color: #f88 !important;
+    padding: 5px;
+    border: 5px;
+    border-radius: 0px 5px 5px 0px !important;
+    width: 19px !important;
+    cursor: pointer;
+}
+/************************/
+
+/* CX de MENSAGEM */
+.cxmsg_fundo{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.75);
+    z-index: 1000;
+}
+.cxmsg{
+    width: 400px;
+}
+.titulo_cxmsg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00f;
+    color: #fff;
+    border-radius: 10px 10px 0px 0px;
+    padding: 5px;
+}
+.corpo_cxmsg{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #aaa;
+    color: #000;
+    padding: 20px 5px;
+}
+.rodape_cxmsg{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    background-color: #555;
+    border-radius: 0px 0px 10px 10px;
+}
+.btn_fechar_cxmsg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f00;
+    width: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.btn_cxmsg{
+    background-color: #aaa;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px;
+    text-transform: uppercase;
+    border: none;
+}
+/***********************/

@@ -5,10 +5,12 @@
   box-sizing: border-box;
 }
 /* auxiliares*/
-.ocultar{
+.ocultar {
   display: none !important;
 }
-/*******************/
+
+/*************/
+
 .cabecalho {
   display: flex;
   justify-content: center;
@@ -28,26 +30,25 @@
   background-color: #ddd;
   width: 100%;
   height: 100vh;
-  /*border: 1px solid red;*/
+  /* border: 1px solid red; */
 }
 .aba {
   background-color: #248;
   color: #fff;
- 
-  text-transform: initial;
+  text-transform: uppercase;
   padding: 10px;
   cursor: pointer;
   border-radius: 10px 10px 0px 0px;
   margin-right: 1px;
 }
 .abaSelecionada {
+  /* background-color: #248 !important; */
   background-color: #ddd !important;
-  color: blue;
 }
 .if_principal {
   width: 100%;
   height: 100%;
-  overflow-x: hidden; /* sem barra de rolagem*/
+  overflow-x: hidden;
   /* border: 1px solid #f00; */
 }
 .btn_geral {
@@ -59,7 +60,6 @@
   border-radius: 10px;
   margin: 10px;
 }
-
 /* NOVO */
 #novo {
   display: flex;
@@ -74,6 +74,7 @@
   align-items: flex-start;
   width: 80%;
   margin-top: 20px;
+  /* border: 1px solid black; */
 }
 .botoesForm {
   display: flex;
@@ -87,21 +88,20 @@
   align-items: flex-start;
   margin-bottom: 10px;
   width: 100%;
-
+  /* border: 1px solid black; */
 }
 .campoForm input {
   width: 100%;
   padding: 10px;
   border-radius: 10px;
 }
+/**********/
 
-
-
-/* PESQUISAR */
+/* Pesquisar */
 .pesquisa {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-around; /*distribui os itens no espaço ocupado*/
   align-items: center;
   width: 100%;
   margin: 10px;
@@ -111,8 +111,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  /* border: 1px solid black; */
 }
-
 input[type="text"] {
   /* border: 1px solid red; */
   padding: 5px;
@@ -124,7 +124,7 @@ label {
 .dgv {
   display: flex;
   justify-content: center;
-  align-items: flex-start;  
+  align-items: flex-start;
   width: 100%;
 }
 .resultado {
@@ -141,9 +141,9 @@ label {
   flex-direction: row;
   width: inherit;
   background-color: #248;
-  color: #fff;  
+  color: #fff;
 }
-.titulo{
+.titulo {
   border-right: 1px solid #ddd;
   padding: 3px;
 }
@@ -162,20 +162,20 @@ label {
   width: inherit;
   background-color: #fff;
 }
-.coluna{
+.coluna {
   padding: 3px;
 }
 .c1 {
   width: 5%;
 }
 .c2 {
-  width: 27%;
+  width: 25%;
 }
 .c3 {
-  width: 13%;
+  width: 20%;
 }
 .c4 {
-  width: 25%;
+  width: 20%;
 }
 .c5 {
   width: 20%;
@@ -183,36 +183,46 @@ label {
 .c6 {
   width: 10%;
 }
-.c_op{
+.c_op {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around; /* distribuir */
   align-items: center;
 }
-/* Gestão */
-.iconeop{
+
+/******************/
+
+/* GESTÃO */
+.iconeop {
   width: 30%;
   cursor: pointer;
 }
-.fundopopup{
-  display: flex;  
+.iconefiltro {
+  width: 30%;
+  cursor: pointer;
+}
+/*************/
+
+/* popup editar*/
+.fundopopup {
+  display: flex;
   width: 100%;
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0,0,0,0.75);
+  background-color: rgba(0, 0, 0, 0.8);
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 999999999999; /*ficar sempre na frente*/
+  z-index: 999999999; /*garantir que ficará na frente*/
 }
-.janelapopup{
+.janelapopup {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
   width: 500px;
 }
-.titulopopup{
+.titulopopup {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -220,23 +230,32 @@ label {
   color: #fff;
   padding: 5px;
   border-radius: 5px 5px 0px 0px;
-  width: inherit;
+  width: inherit; /*seque a largura do pai*/
 }
-.principalpopup{
+.principalpopup {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  width: inherit;
+  width: inherit; /*seque a largura do pai*/
   background-color: #ddd;
   padding: 5px;
 }
-.rodapepopup{
+.rodapepopup {
   display: flex;
-  justify-content: space-around; /*distribui igualmente*/
-  align-items: flex-start;  
-  width: inherit;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: inherit; /*seque a largura do pai*/
   background-color: #aaa;
-  /* padding: 5px; */
-  border-radius: 0px 0px 5px 5px ;
+  border-radius: 0px 0px 5px 5px;
 }
+/*****************/
+
+/*Filtrar*/
+.filtro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+/*****************/
